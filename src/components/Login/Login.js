@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Typography } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Padlock from '../../assets/padlock.png'
+import './Login.css'
 
 const Login = (props) => {
 
@@ -14,6 +15,8 @@ const Login = (props) => {
 
     const emailChangeHandler = event => {
         setEnteredEmail(event.target.value);
+
+        console.log("event.target.value", event.target.value);
 
         setFormIsValid(event.target.value.includes('@') && enteredPassword.trim().length > 6);
     };
@@ -39,38 +42,38 @@ const Login = (props) => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen border">
-            <div>
-                <LockOutlinedIcon classNames="" style={{ color: '#4080E0' }} />
-                <form>
-                    <div>
+        <div className="flex justify-center items-center h-screen">
+            <div className="w-1/2">
+                <img src={Padlock} className="object-contain m-auto mb-16 w-2/5 md:w-1/4" />
+                <form onSubmit={submitHandler}>
+                    <div className="mb-5">
                         <label>
                             <input
                                 type="email"
                                 id="email"
-                                placeholder="email"
-                                className="border-b-2"
+                                placeholder="E-mail"
+                                className="border-b-2 w-full"
                                 style={{ color: '#5F6667' }}
                                 onChange={emailChangeHandler}
                                 onBlur={validateEmailHandler}
                             />
                         </label>
                     </div>
-                    <div>
+                    <div className="mb-5">
                         <label>
                             <input
                                 type="password"
                                 id="password"
-                                placeholder="password"
-                                className="border-b-2"
+                                placeholder="Password"
+                                className="border-b-2 w-full"
                                 style={{ color: '#5F6667' }}
                                 onChange={passwordChangeHandler}
                                 onBlur={validatePasswordHandler}
                             />
                         </label>
                     </div>
-                    <div>
-                        <Button style={{ backgroundColor: '#214B84' }} disabled={!formIsValid}>
+                    <div className="flex justify-center w-full">
+                        <Button className="w-full" type="submit" disabled={!formIsValid} style={{ backgroundColor: '#214B84' }} >
                             <Typography className="capitalize text-white">Log In</Typography>
                         </Button>
                     </div>
